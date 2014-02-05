@@ -1,12 +1,12 @@
 {
- "name": "generator-bob",
+  "name": "generator-bob",
   "description": "Generator for Bob-built node.js projects",
   "keywords": [
     "bob",
     "generator",
     "scaffold"
   ],
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "http://github.com/cliffano/generator-bob",
   "author": "Cliffano Subagio <blah@cliffano.com> (http://blog.cliffano.com)",
   "contributors": [
