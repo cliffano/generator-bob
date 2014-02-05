@@ -1,0 +1,46 @@
+{
+  "name": "<%= params.projectName %>",
+  "description": "<%= params.projectDesc %>",
+  "keywords": [
+  ],
+  "version": "0.0.1",
+  "homepage": "http://github.com/<%= params.githubUsername %>/<%= params.projectName %>",
+  "author": "<%= params.authorName %> <%= params.authorEmail %> (<%= params.authorWebsite %>)",
+  "contributors": [
+    "All contributors (https://github.com/<%= params.githubUsername %>/<%= params.projectName %>/graphs/contributors)"
+  ],
+  "main": "./lib/<%= params.projectName %>",
+  "bin": {
+    "<%= params.projectName %>": "./bin/<%= params.projectName %>"
+  },
+  <% if (params.hasCli) { %>"preferGlobal": true,<% } %>
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/<%= params.githubUsername %>/<%= params.projectName %>.git"
+  },
+  "bugs": {
+    "url": "http://github.com/<%= params.githubUsername %>/<%= params.projectName %>/issues"
+  },
+  "directories": {
+    <% if (params.hasCli) { %>"bin": "./bin",<% } %>
+    "lib": "./lib",
+    "test": "./test"
+  },
+  "dependencies": {
+    <% if (params.hasCli) { %>"bagofcli": "~0.0.1"<% } %>
+  },
+  "devDependencies": {
+    "buster-node": "~0.0.1",
+    "referee": "~0.0.1"
+  },
+  "scripts": {},
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/<%= params.githubUsername %>/<%= params.projectName %>/raw/master/LICENSE"
+    }
+  ]
+}

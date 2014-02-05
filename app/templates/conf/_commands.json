@@ -1,0 +1,23 @@
+{
+  "options": [
+    { "arg": "--global-opt-with-value <globalOptWithValue>", "desc": "Global opt with value" },
+    { "arg": "--global-opt-without-value", "desc": "Global opt without value, enable/disable" }
+  ],
+  "commands": {
+    "command-name": {
+      "desc": "Command description",
+      "args": [
+        { "name": "commandArg1", "rules": [ "notEmpty" ] },
+        { "name": "commandArg2", "optional": true }
+      ],
+      "options": [
+        { "arg": "-c1, --command-opt-without-value", "desc": "Command opt without value, enable/disable" },
+        { "arg": "-c2, --command-opt-with-value <commandOptWithValue>", "desc": "Command opt with value" }
+      ],
+      "examples": [
+        "<%= params.projectName %> command-name -c1",
+        "<%= params.projectName %> command-name -c1 --global-opt-with-value someValue",
+      ]
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+ "name": "generator-bob",
+  "description": "Generator for Bob-built node.js projects",
+  "keywords": [
+    "bob",
+    "generator",
+    "scaffold"
+  ],
+  "version": "0.0.1",
+  "homepage": "http://github.com/cliffano/generator-bob",
+  "author": "Cliffano Subagio <blah@cliffano.com> (http://blog.cliffano.com)",
+  "contributors": [
+    "All contributors (https://github.com/cliffano/generator-bob/graphs/contributors)"
+  ],
+  "main": "./lib/generator-bob",
+  "preferGlobal": true,
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/cliffano/generator-bob.git"
+  },
+  "bugs": {
+    "url": "http://github.com/cliffano/generator-bob/issues"
+  },
+  "directories": {
+    "lib": "./app",
+    "test": "./test"
+  },
+  "dependencies": {
+    "chalk": "~0.4.0",
+    "yeoman-generator": "~0.16.0"
+  },
+  "peerDependencies": {
+    "yo": "~1.0.6"
+  },
+  "devDependencies": {
+    "buster-node": "~0.7.0",
+    "referee": "~1.0.1"
+  },
+  "scripts": {},
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/cliffano/generator-bob/raw/master/LICENSE"
+    }
+  ]
+}

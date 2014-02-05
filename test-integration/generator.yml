@@ -1,0 +1,12 @@
+- description: Install Yeoman as peer dependency
+  command: npm install -g yeoman
+  exitcode: 0
+
+- description: Install Generator Bob
+  command: cd ../../../../../ && npm link
+  exitcode: 0
+
+- description: Generate Bob project using Yeoman
+  command: echo "someproject" | yo bob
+  exitcode: 0
+  output: 'Blah'
