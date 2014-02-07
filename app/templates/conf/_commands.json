@@ -16,7 +16,7 @@
       ],
       "examples": [
         "<%= params.projectName %> command-name -c1",
-        "<%= params.projectName %> command-name -c1 --global-opt-with-value someValue",
+        "<%= params.projectName %> command-name -c1 --global-opt-with-value someValue"
       ]
     }
   }
