@@ -2,7 +2,7 @@
     base: ../../../../../
 
 - description: Install Yeoman as peer dependency
-  command: npm install -g yeoman
+  command: npm install -g yo
   exitcode: 0
 
 - description: Install Generator Bob
