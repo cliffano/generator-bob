@@ -12,4 +12,4 @@
 - description: Generate Bob project using Yeoman
   command: echo "someproject" | yo bob
   exitcode: 0
-  output: '.+Project name\: .+someproject.+'
+  output: '.+Project name\: .+'
