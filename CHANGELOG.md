@@ -1,4 +1,7 @@
-### 0.1.1-pre
+### 0.1.2-pre
+*
+
+### 0.1.1
 * Set package template min node engine to >= v0.10.0
 * Add coveralls report to Travis CI config
 
