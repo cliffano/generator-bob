@@ -25,3 +25,8 @@ Usage
 Generate Bob project directories and files:
 
     yo bob
+
+Colophon
+--------
+
+[Developer's Guide](http://cliffano.github.io/developers_guide.html#nodejs)
