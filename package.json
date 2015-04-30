@@ -26,15 +26,15 @@
     "test": "./test"
   },
   "dependencies": {
-    "chalk": "~0.5.1",
-    "yeoman-generator": "~0.18.8"
-  },
-  "peerDependencies": {
-    "yo": "~1.4.5"
+    "chalk": "^1.0.0",
+    "mkdirp": "^0.5.0",
+    "yeoman-generator": "^0.19.2",
+    "yo": "^1.4.6"
   },
   "devDependencies": {
-    "buster-node": "~0.7.0",
-    "referee": "~1.1.1"
+    "buster-node": "^0.7.1",
+    "proxyquire": "^1.4.0",
+    "referee": "^1.1.1"
   },
   "scripts": {},
   "engines": {

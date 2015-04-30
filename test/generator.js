@@ -1,5 +1,6 @@
 var buster = require('buster-node');
 var Generator = require('../lib/generator');
+var proxyquire = require('proxyquire');
 var referee = require('referee');
 var yeoman = require('yeoman-generator');
 var assert = referee.assert;
@@ -38,17 +39,19 @@ buster.testCase('generator - app', {
   setUp: function () {
     this.mockBase = this.mock(yeoman.generators.Base);
     this.mockBase.expects('apply').once();
+
+    this.dirs = [];
+    var self = this;
+    var mkdirp = function (dir) {
+      self.dirs.push(dir);
+    };
+    var Generator = proxyquire('../lib/generator', { mkdirp: mkdirp });
     this.generator = new Generator();
   },
   'should create baseline directories and template files': function () {
     this.generator.params = {
       hasCli: false,
       projectName: 'someproject'
-    };
-
-    var dirs = [];
-    this.generator.mkdir = function (dir) {
-      dirs.push(dir);
     };
 
     var srcs = [];
@@ -60,7 +63,7 @@ buster.testCase('generator - app', {
 
     this.generator.app();
 
-    assert.isTrue(dirs.length > 0);
+    assert.isTrue(this.dirs.length > 0);
     assert.isTrue(srcs.length > 0);
     assert.isTrue(dests.length > 0);
   },
@@ -70,11 +73,6 @@ buster.testCase('generator - app', {
       projectName: 'someproject'
     };
 
-    var dirs = [];
-    this.generator.mkdir = function (dir) {
-      dirs.push(dir);
-    };
-
     var srcs = [];
     var dests = [];
     this.generator.template = function (src, dest) {
@@ -84,8 +82,8 @@ buster.testCase('generator - app', {
 
     this.generator.app();
 
-    assert.isTrue(dirs.indexOf('bin') !== -1);
-    assert.isTrue(dirs.indexOf('conf') !== -1);
+    assert.isTrue(this.dirs.indexOf('bin') !== -1);
+    assert.isTrue(this.dirs.indexOf('conf') !== -1);
     assert.isTrue(srcs.indexOf('bin/_project') !== -1);
     assert.isTrue(srcs.indexOf('conf/_commands.json') !== -1);
     assert.isTrue(srcs.indexOf('lib/_cli.js') !== -1);
