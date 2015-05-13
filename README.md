@@ -2,8 +2,8 @@
 
 [![Build Status](https://img.shields.io/travis/cliffano/generator-bob.svg)](http://travis-ci.org/cliffano/generator-bob)
 [![Dependencies Status](https://img.shields.io/david/cliffano/generator-bob.svg)](http://david-dm.org/cliffano/generator-bob)
-[![Coverage Status](https://coveralls.io/repos/cliffano/generator-bob/badge.png?branch=master)](https://coveralls.io/r/cliffano/generator-bob?branch=master)
-[![Published Version](https://badge.fury.io/js/generator-bob.png)](http://badge.fury.io/js/generator-bob)
+[![Coverage Status](https://img.shields.io/coveralls/cliffano/generator-bob.svg)](https://coveralls.io/r/cliffano/generator-bob?branch=master)
+[![Published Version](https://img.shields.io/npm/v/generator-bob.svg)](http://www.npmjs.com/package/generator-bob)
 <br/>
 [![npm Badge](https://nodei.co/npm/generator-bob.png)](http://npmjs.org/package/generator-bob)
 
