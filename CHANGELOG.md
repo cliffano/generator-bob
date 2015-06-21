@@ -1,5 +1,5 @@
 ### 0.1.2-pre
-*
+* Add build reports to readme
 
 ### 0.1.1
 * Set package template min node engine to >= v0.10.0
