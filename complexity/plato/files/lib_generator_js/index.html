@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plato - lib/generator.js</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link href="../../assets/css/vendor/morris.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/bootstrap.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/font-awesome.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/codemirror.css" rel="stylesheet">
+  <link href="../../assets/css/plato.css" rel="stylesheet">
+  <link href="../../assets/css/plato-file.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="http://github.com/es-analysis/plato">Plato on Github</a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="../../index.html">Report Home</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>lib/generator.js</h1>
+  </div>
+</div>
+
+<div class="container aggregate-stats">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
+      <p class="stat">61.11</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
+      <p class="stat">105</p>
+    </div>
+  </div>
+  <div class="row historical">
+    <div class="col-md-6">
+      <p id="chart_historical_maint" class="chart"></p>
+    </div>
+    <div class="col-md-6">
+      <p id="chart_historical_sloc" class="chart"></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
+      <p class="stat">12.30</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
+      <p class="stat">0.83</p>
+    </div>
+  </div>
+</div>
+
+<div class="container charts">
+  <div class="row">
+    <h2 class="header">Function weight</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="chart-header">By Complexity <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="This metric counts the number of distinct paths through a block of code. Lower values are better." data-original-title="Cyclomatic Complexity" data-container="body"></i></a></h3>
+      <div id="fn-by-complexity" class="stat"></div>
+    </div>
+    <div class="col-md-6">
+      <h3 class="chart-header">By SLOC  <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h3>
+      <div id="fn-by-sloc" class="stat"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <textarea id="file-source" class="col-md-12">var mkdirp = require(&#039;mkdirp&#039;);
+var p = require(&#039;path&#039;);
+var util = require(&#039;util&#039;);
+var yeoman = require(&#039;yeoman-generator&#039;);
+
+/**
+ * class Generator
+ *
+ * @param {Object} args:
+ * @param {Object} options:
+ * @param {Object} config:
+ */
+function Generator(args, options, config) {
+  yeoman.generators.Base.apply(this, arguments);
+}
+
+util.inherits(Generator, yeoman.generators.Base);
+
+/**
+ * Sets up user input prompts.
+ */
+Generator.prototype.askFor = function () {
+  var cb = this.async();
+  var prompts = [
+    {
+      name: &#039;projectName&#039;,
+      message: &#039;Project name&#039;
+    },
+    {
+      name: &#039;projectDesc&#039;,
+      message: &#039;Project description&#039;
+    },
+    {
+      name: &#039;authorName&#039;,
+      message: &#039;Author name&#039;
+    },
+    {
+      name: &#039;authorEmail&#039;,
+      message: &#039;Author email&#039;
+    },
+    {
+      name: &#039;authorWebsite&#039;,
+      message: &#039;Author website&#039;
+    },
+    {
+      name: &#039;githubUsername&#039;,
+      message: &#039;GitHub username&#039;
+    },
+    {
+      name: &#039;copyrightYear&#039;,
+      message: &#039;Copyright year&#039;,
+      default: (new Date()).getFullYear()
+    },
+    {
+      type: &#039;confirm&#039;,
+      name: &#039;hasCli&#039;,
+      message: &#039;Has command-line interface?&#039;,
+      default: true
+    }
+  ];
+
+  this.prompt(prompts, function (params) {
+
+    this.params = params;
+    this.params.projectClass =
+      this.params.projectName.charAt(0).toUpperCase() +
+      this.params.projectName.slice(1).toLowerCase();
+    this.params.projectTitle = this.params.projectClass;
+
+    cb();
+  }.bind(this));
+};
+
+/**
+ * Creates directories and templatised files.
+ * Also handles specific project types, e.g. projects having CLI.
+ */
+Generator.prototype.app = function () {
+
+  mkdirp(&#039;lib&#039;);
+  mkdirp(&#039;test&#039;);
+  mkdirp(&#039;test-integration&#039;);
+
+  this.template(&#039;_.bob.json&#039;, &#039;.bob.json&#039;);
+  this.template(&#039;_.gitignore&#039;, &#039;.gitignore&#039;);
+  this.template(&#039;_.jshintrc&#039;, &#039;.jshintrc&#039;);
+  this.template(&#039;_.npmignore&#039;, &#039;.npmignore&#039;);
+  this.template(&#039;_.travis.yml&#039;, &#039;.travis.yml&#039;);
+  this.template(&#039;_CHANGELOG.md&#039;, &#039;CHANGELOG.md&#039;);
+  this.template(&#039;_LICENSE&#039;, &#039;LICENSE&#039;);
+  this.template(&#039;_README.md&#039;, &#039;README.md&#039;);
+  this.template(&#039;_package.json&#039;, &#039;package.json&#039;);
+  this.template(p.join(&#039;lib&#039;, &#039;_project.js&#039;), p.join(&#039;lib&#039;, this.params.projectName + &#039;.js&#039;));
+
+  if (this.params.hasCli) {
+    mkdirp(&#039;bin&#039;);
+    mkdirp(&#039;conf&#039;);
+    this.template(p.join(&#039;bin&#039;, &#039;_project&#039;), p.join(&#039;bin&#039;, this.params.projectName));
+    this.template(p.join(&#039;conf&#039;, &#039;_commands.json&#039;), p.join(&#039;conf&#039;, &#039;commands.json&#039;));
+    this.template(p.join(&#039;lib&#039;, &#039;_cli.js&#039;), p.join(&#039;lib&#039;, &#039;cli.js&#039;));
+  }
+
+};
+
+module.exports = Generator;</textarea>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>.</p>
+  </div>
+</footer>
+
+<script type="text/html" id="complexity-popover-template">
+  <div class="complexity-notice">
+    Complexity : {{ complexity.cyclomatic }} <br>
+    Length : {{ complexity.halstead.length }} <br>
+    Difficulty : {{ complexity.halstead.difficulty.toFixed(2) }} <br>
+    Est # bugs : {{ complexity.halstead.bugs.toFixed(2) }}<br>
+  </div>
+</script>
+
+<script type="text/javascript" src="../../assets/scripts/bundles/core-bundle.js"></script>
+<script type="text/javascript" src="../../assets/scripts/bundles/codemirror.js"></script>
+<script type="text/javascript" src="../../assets/scripts/codemirror.markpopovertext.js"></script>
+<script type="text/javascript" src="report.js"></script>
+<script type="text/javascript" src="report.history.js"></script>
+<script type="text/javascript" src="../../assets/scripts/plato-file.js"></script>
+</body>
+</html>
